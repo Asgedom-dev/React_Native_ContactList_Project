@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import Stars from 'components/Stars';
+import CourseDetails from './CourseDetails';
+import Stars from './Stars';
 
 const Course = ({ data }) => {
   const { index, title, faculty, code, rating } = data;
 
-  const infoPressed = () => { };
+  const {navigate} = useNavigation();
+    
+  const infoPressed = () => {
+   navigate('CourseDetails',{course:data})
+   };
 
   return (
     <View

@@ -1,14 +1,23 @@
 import React from 'react';
-
+import { ScrollView,View,TouchableOpacity,Text } from 'react-native';
 import {
   StyleSheet,
 } from 'react-native';
+import Stars from './Stars';
 
+const CourseDetails = ({route:{params:{course}},navigation:{navigate}}) => {
 
-const CourseDetails = () => {
+  //or
+  // const course = params.course
+
+  
+  const addReview=()=>{
+    navigate('AddReview',{course})
+  }
+
   return (
     <ScrollView style={styles.root}>
-      {/* 
+      
       <View>
         <View style={styles.infoHeader}>
           <Text style={styles.name}>{course.title}</Text>
@@ -19,7 +28,7 @@ const CourseDetails = () => {
             <Text style={styles.buttonText}>Add Review</Text>
           </TouchableOpacity>
         </View> 
-      </View>*/}
+      </View>
     </ScrollView>
   );
 };

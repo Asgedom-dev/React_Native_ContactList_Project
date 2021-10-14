@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 
-import HeaderStyle from 'styles/HeaderStyle';
-import CourseImage from 'images/course.png';
+import HeaderStyle from '../styles/HeaderStyle'
+import CourseImage from '../images/course.png';
+import Course from './Course';
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
           alignItems: 'center',
           marginTop: 10,
         }}>
-        <Image source={CourseImage} />
+        <Image source={require('../images/course.png')} />
       </View>
       <Text style={HeaderStyle.ios}>Courses Review</Text>
     </View>

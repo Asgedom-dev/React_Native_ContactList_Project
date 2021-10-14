@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Platform, SafeAreaView, View, Image, TextInput, FlatList } from 'react-native';
+import { useState, useEffect } from 'react';
 
-import Course from 'components/Course';
-import Header from 'components/Header';
+import Course from './Course';
+import Header from './Header'
+import { Button } from 'react-native-paper';
 
 const data = [
     { title: 'Web Application Programming', faculty: 'Asaad Saad', code: 'CS472', rating: 4 },
@@ -16,6 +18,13 @@ const data = [
 ];
 
 export default function CoursesList() {
+    const [cources, setcources] = useState([])
+    const [search, setSearch]=useState('')
+   
+    useEffect(()=>{
+        setcources(data)
+    },[])
+
     return (
         <SafeAreaView
             style={{
@@ -26,13 +35,31 @@ export default function CoursesList() {
             }}>
             <View>
                 <Header />
+
+                <TextInput 
+                placeholder="Search for a Course by name"
+                style={styles.input}
+                value={search}
+                onChangeText={text=>setSearch(text)}
+                />
+
+                <FlatList
+                        data={cources.filter(cources=>cources.title.toLowerCase().indexOf(search.toLowerCase())>-1)}
+                        renderItem={({ item,index }) => <Course data= {{...item,index}} />}
+                        keyExtractor={item => item.code}
+                    />
+
+                    
             </View >
+            
+           
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     input: {
+        marginLeft:20,
         padding: 10,
         paddingHorizontal: 20,
         fontSize: 16,
